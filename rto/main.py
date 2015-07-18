@@ -16,6 +16,8 @@ def open_browser(url):
 
 def rto_main():
     redmine_url = os.environ['REDMINE_URL']
+    if redmine_url[-1] != '/':
+        redmine_url += '/'
     api_key = os.environ['REDMINE_API_KEY']
     rest_url = redmine_url + 'issues.json?key=' + api_key + '&status_id=open&assigned_to_id=me'
     req = urllib2.Request(rest_url)
