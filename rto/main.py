@@ -15,10 +15,21 @@ def open_browser(url):
         print "TBD"
 
 def rto_main():
-    redmine_url = os.environ['REDMINE_URL']
+    try:
+        redmine_url = os.environ['REDMINE_URL']
+    except:
+        print "you should set REDMINE_URL environment variable."
+        return
+
     if redmine_url[-1] != '/':
         redmine_url += '/'
-    api_key = os.environ['REDMINE_API_KEY']
+
+    try:
+        api_key = os.environ['REDMINE_API_KEY']
+    except:
+        print "you should set REDMINE_API_KEY environment variable."
+        return
+
     rest_url = redmine_url + 'issues.json?key=' + api_key + '&status_id=open&assigned_to_id=me'
     req = urllib2.Request(rest_url)
     try:
