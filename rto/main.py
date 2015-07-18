@@ -14,7 +14,7 @@ def open_browser(url):
     else:
         print "TBD"
 
-def main():
+def rto_main():
     redmine_url = os.environ['REDMINE_URL']
     api_key = os.environ['REDMINE_API_KEY']
     rest_url = redmine_url + 'issues.json?key=' + api_key + '&status_id=open&assigned_to_id=me'
@@ -32,4 +32,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    rto_main()

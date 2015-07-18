@@ -11,10 +11,11 @@ export REDMINE_URL="REDMINE URL"
 export REDMINE_API_KEY="API KEY"
 ```
 
-## Run
+## Install and Run
 
 ```
-$ python rto.py
+$ pip install git+https://github.com/sassy/rto.git
+$ rto
 ```
 
 
