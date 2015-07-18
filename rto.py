@@ -8,9 +8,9 @@ import platform
 def open_browser(url):
     platform_name = platform.system()
     if platform_name == 'Darwin':
-        os.sytem('open ' + url)
-    else if platform_name == 'Windows':
-        os.sytem('open ' + url)
+        os.system('open ' + url)
+    elif platform_name == 'Windows':
+        os.system('open ' + url)
     else:
         print "TBD"
 
