@@ -3,6 +3,9 @@ Open redmine ticket of myself to browser.
 
 ## Setting
 
+You must set environment variables, REDMINE_URL and REDMINE_API_KEY.
+for example:
+
 ```
 export REDMINE_URL="REDMINE URL"
 export REDMINE_API_KEY="API KEY"
@@ -15,6 +18,7 @@ $ python rto.py
 ```
 
 
-## limitation
+## support
 
-support Mac OS X Only.
+* Mac OS X
+* Windows
