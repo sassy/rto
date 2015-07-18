@@ -10,7 +10,7 @@ def open_browser(url):
     if platform_name == 'Darwin':
         os.system('open ' + url)
     elif platform_name == 'Windows':
-        os.system('open ' + url)
+        os.system('start ' + url)
     else:
         print "TBD"
 
