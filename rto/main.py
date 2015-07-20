@@ -45,7 +45,6 @@ def rto_main():
         for issue in data['issues']:
             issue_url = redmine_url + "issues/" + str(issue['id'])
             if (args.expired_time):
-                print(hasattr(args, "et"))
                 due_datetime = datetime.datetime.strptime(str(issue['due_date']), '%Y-%m-%d')
                 if (due_datetime < datetime.datetime.today()):
                     open_browser(issue_url)
