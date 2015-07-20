@@ -4,6 +4,8 @@ import urllib2
 import json
 import os
 import platform
+import argparse
+import datetime
 
 def open_browser(url):
     platform_name = platform.system()
@@ -15,6 +17,10 @@ def open_browser(url):
         print "TBD"
 
 def rto_main():
+    parser = argparse.ArgumentParser(description="option")
+    parser.add_argument('-et', action='store_true', default=False, dest='expired_time')
+    args = parser.parse_args()
+
     try:
         redmine_url = os.environ['REDMINE_URL']
     except:
@@ -38,7 +44,13 @@ def rto_main():
         data = json.loads(ret)
         for issue in data['issues']:
             issue_url = redmine_url + "issues/" + str(issue['id'])
-            open_browser(issue_url)
+            if (args.expired_time):
+                print(hasattr(args, "et"))
+                due_datetime = datetime.datetime.strptime(str(issue['due_date']), '%Y-%m-%d')
+                if (due_datetime < datetime.datetime.today()):
+                    open_browser(issue_url)
+            else:
+                open_browser(issue_url)
 
     except urllib2.HTTPError:
         print "error"
