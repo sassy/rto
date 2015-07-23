@@ -16,9 +16,26 @@ def open_browser(url):
     else:
         print "TBD"
 
+def open(redmine_url, issues, expired_time=None):
+    for issue in issues:
+        issue_url = redmine_url + "issues/" + str(issue['id'])
+        if (expired_time):
+            due_datetime = datetime.datetime.strptime(str(issue['due_date']), '%Y-%m-%d')
+            if (due_datetime < datetime.datetime.today()):
+                open_browser(issue_url)
+        else:
+            open_browser(issue_url)
+
+def list(issues):
+    for issue in issues:
+        print(str(issue['id']) + " " + issue['subject'])
+
 def rto_main():
     parser = argparse.ArgumentParser(description="option")
-    parser.add_argument('-et', action='store_true', default=False, dest='expired_time')
+    parser.add_argument('-a', action="store", type=str, default="open", dest='action',
+        help='open is opening issue url in browser, list is printing commandline.default is open')
+    parser.add_argument('-et', action='store_true', default=False, dest='expired_time',
+        help='open issue of over due time')
     args = parser.parse_args()
 
     try:
@@ -41,18 +58,15 @@ def rto_main():
     try:
         res = urllib2.urlopen(req)
         ret = res.read()
-        data = json.loads(ret)
-        for issue in data['issues']:
-            issue_url = redmine_url + "issues/" + str(issue['id'])
-            if (args.expired_time):
-                due_datetime = datetime.datetime.strptime(str(issue['due_date']), '%Y-%m-%d')
-                if (due_datetime < datetime.datetime.today()):
-                    open_browser(issue_url)
-            else:
-                open_browser(issue_url)
-
     except urllib2.HTTPError:
         print "error"
+        return
+
+    data = json.loads(ret)
+    if args.action == 'open':
+        open(redmine_url, data['issues'], args.expired_time)
+    elif args.action == 'list':
+        list(data['issues'])
 
 
 if __name__ == '__main__':
