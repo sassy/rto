@@ -20,6 +20,8 @@ def open(redmine_url, issues, expired_time=None):
     for issue in issues:
         issue_url = redmine_url + "issues/" + str(issue['id'])
         if (expired_time):
+            if ('due_date' not in issue):
+                continue;
             due_datetime = datetime.datetime.strptime(str(issue['due_date']), '%Y-%m-%d')
             if (due_datetime < datetime.datetime.today()):
                 open_browser(issue_url)
