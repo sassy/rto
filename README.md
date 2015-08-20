@@ -40,6 +40,10 @@ $ pip install git+https://github.com/sassy/rto.git
 ```
 
 You must set environment variables, REDMINE_URL and REDMINE_API_KEY.
+
+* REDMINE_URL : redmine url of your project.
+* REDMINE_API_KEY : the key to use Redmine REST API.
+
 for example:
 
 ```
