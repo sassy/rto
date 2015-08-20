@@ -38,6 +38,8 @@ def rto_main():
         help='open is opening issue url in browser, list is printing commandline.default is open')
     parser.add_argument('-et', action='store_true', default=False, dest='expired_time',
         help='open issue of over due time')
+    parser.add_argument('-p', action='store', default="", dest='project_id',
+        help='open issue of directed project.')
     args = parser.parse_args()
 
     try:
@@ -56,6 +58,8 @@ def rto_main():
         return
 
     rest_url = redmine_url + 'issues.json?key=' + api_key + '&status_id=open&assigned_to_id=me'
+    if args.project_id != "":
+        rest_url += '&project_id=' + args.project_id
     req = urllib2.Request(rest_url)
     try:
         res = urllib2.urlopen(req)
