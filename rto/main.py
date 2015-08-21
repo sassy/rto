@@ -30,7 +30,7 @@ def open(redmine_url, issues, expired_time=None):
 
 def list(issues):
     for issue in issues:
-        print(str(issue['id']) + " " + issue['subject'])
+        print(str(issue['id']) + " " + issue['subject'] + " " + issue['status']['name'])
 
 def rto_main():
     parser = argparse.ArgumentParser(description="option")
