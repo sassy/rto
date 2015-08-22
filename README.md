@@ -36,6 +36,11 @@ $ rto
 ## Install
 
 ```
+$ pip install rto
+```
+or
+
+```
 $ pip install git+https://github.com/sassy/rto.git
 ```
 
