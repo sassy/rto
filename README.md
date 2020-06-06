@@ -11,7 +11,7 @@ You will make tasks clear, by this tool.
 
 ## Requirement
 
-* python 2.x
+* python 3.x
 
 ### support platform
 
