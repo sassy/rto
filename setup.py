@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='rto',
-    version='0.1',
+    version='1.0',
     description='Open Redmine ticket of myself to browser.',
     packages=find_packages(),
     install_requires=['cliff'],
@@ -16,8 +16,7 @@ setup(
           'Intended Audience :: Developers',
           'Operating System :: MacOS :: MacOS X',
           'Operating System :: Microsoft :: Windows',
-          'Programming Language :: Python',
-          'Programming Language :: Python :: 2.7',
+          'Programming Language :: Python'
     ],
     author='Satoshi Watanabe',
     author_email='sassy.watanabe@gmail.com',
