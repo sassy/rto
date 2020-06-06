@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import urllib2
+import urllib.request, urllib.error
 import json
 import os
 import platform
@@ -14,7 +14,7 @@ def open_browser(url):
     elif platform_name == 'Windows':
         os.system('start ' + url)
     else:
-        print "TBD"
+        print("TBD")
 
 def open(redmine_url, issues, expired_time=None):
     for issue in issues:
@@ -45,7 +45,7 @@ def rto_main():
     try:
         redmine_url = os.environ['REDMINE_URL']
     except:
-        print "you should set REDMINE_URL environment variable."
+        print("you should set REDMINE_URL environment variable.")
         return
 
     if redmine_url[-1] != '/':
@@ -54,18 +54,18 @@ def rto_main():
     try:
         api_key = os.environ['REDMINE_API_KEY']
     except:
-        print "you should set REDMINE_API_KEY environment variable."
+        print("you should set REDMINE_API_KEY environment variable.")
         return
 
     rest_url = redmine_url + 'issues.json?key=' + api_key + '&status_id=open&assigned_to_id=me'
     if args.project_id != "":
         rest_url += '&project_id=' + args.project_id
-    req = urllib2.Request(rest_url)
+    req = urllib.request.Request(rest_url)
     try:
-        res = urllib2.urlopen(req)
+        res = urllib.request.urlopen(req)
         ret = res.read()
-    except urllib2.HTTPError:
-        print "error"
+    except urllib.error.HTTPError as e:
+        print(e)
         return
 
     data = json.loads(ret)
